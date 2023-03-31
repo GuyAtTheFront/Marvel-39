@@ -58,7 +58,15 @@ public class Utils {
         comment.setId(doc.getString("id"));
         comment.setComment(doc.getString("comment"));
         comment.setTimestamp(LocalDateTime.ofInstant(doc.getDate("timestamp").toInstant(), ZoneId.systemDefault()));
-
+        
         return comment;
+    }
+
+    public static JsonObject toJson(Comment comment) {
+        return Json.createObjectBuilder()
+                .add("id", comment.getId())
+                .add("comment", comment.getComment())
+                .add("timestamp", comment.getTimestamp().toString())
+                .build();
     }
 }

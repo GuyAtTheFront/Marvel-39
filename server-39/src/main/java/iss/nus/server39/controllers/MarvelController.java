@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,8 +59,18 @@ public class MarvelController {
     public ResponseEntity<String> getDetails(@PathVariable String id) {
         
         String detail = marvelService.getDetails(id);
+        List<Comment> comments = commentService.getLatestComments();
         
-        return ResponseEntity.ok().body(detail);
+        JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
+        comments.forEach(x -> arrBuilder.add(Utils.toJson(x)));
+        
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(Json.createObjectBuilder()
+                        .add("details", Utils.toJson(detail))
+                        .add("comments", arrBuilder)
+                        .build()
+                        .toString());
     }
 
     @PostMapping(path="character/{id}", produces=MediaType.APPLICATION_JSON_VALUE)

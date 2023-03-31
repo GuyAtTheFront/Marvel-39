@@ -38,7 +38,6 @@ public class MarvelService {
 
         // cache-hit
         if (opt.isPresent()) {
-            // TODO: Add comments
             return opt.get();
         }
 
@@ -83,8 +82,6 @@ public class MarvelService {
 
         // cache
         redisRepo.insertDetails(character);
-
-        // TODO: Add comments
 
         return Utils.toJson(character).toString();
     }
