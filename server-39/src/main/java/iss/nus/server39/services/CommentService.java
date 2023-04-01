@@ -22,8 +22,8 @@ public class CommentService {
         return;
     }
 
-    public List<Comment> getLatestComments() {
-        return mongoRepo.getComments();
+    public List<Comment> getLatestComments(String id) {
+        return mongoRepo.getComments(id);
     }
     
 }

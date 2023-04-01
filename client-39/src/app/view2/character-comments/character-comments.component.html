@@ -1,0 +1,15 @@
+<div style="width: 500px; margin: 20px">
+    <button type="button" (click)="onClick()">comment</button>
+    <h3> Comments </h3>
+    <div *ngIf="comments?.length == 0">
+        <p> No comments available </p>
+    </div>
+    <div *ngFor="let comment of comments" style="padding: 5px; border: 1px solid black">
+        <p>{{comment.comment}}</p>
+    </div>
+</div>
+<!-- <table>
+    <tr *ngFor="let comment of comments">
+        <td>{{comment.comment}}</td>
+    </tr>
+</table> -->

@@ -1,0 +1,15 @@
+<div style="width: 500px; margin: 20px">
+    <img [src]="detail?.imageUrl" 
+                alt="https://media.moddb.com/cache/images/members/5/4550/4549205/thumb_620x2000/duck.jpg"
+                width="300">
+    <h2>{{ detail?.name }}</h2>
+    <p> {{ detail?.description || "No description" }} </p>
+</div>
+
+<!-- <table>
+    <tr><img [src]="detail.imageUrl" 
+            alt="https://media.moddb.com/cache/images/members/5/4550/4549205/thumb_620x2000/duck.jpg"
+            width="300"></tr>
+    <tr>{{ detail.name }}</tr>
+    <tr>{{ detail.description || "No description" }}</tr>
+</table> -->

@@ -24,10 +24,12 @@ public class MongoRepository {
         return;
     }
 
-    public List<Comment> getComments() {
-        // db.comments.find({}).sort({timestamp: -1}).limit(10);
+    public List<Comment> getComments(String id) {
+        // db.comments.find({id: '12345678'}).sort({timestamp: -1}).limit(10);
 
-        Query query = Query.query(new Criteria())
+        Criteria criteria = Criteria.where("id").is(id);
+
+        Query query = Query.query(criteria)
         .with(Sort.by(Sort.Direction.DESC, "timestamp"))
         .limit(10);
 
@@ -35,8 +37,8 @@ public class MongoRepository {
         .exclude("_id");
 
         List<Document> docs = mongoTemplate.find(query, Document.class, "comments");
-
-        System.out.println(Utils.toComment(docs.get(0)));
+        
+        // System.out.println(Utils.toComment(docs.get(0)));
 
         List<Comment> comments = docs.stream().map(x -> Utils.toComment(x)).toList();
 

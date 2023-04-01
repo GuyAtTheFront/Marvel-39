@@ -1,0 +1,8 @@
+<h1> THIS IS LIST </h1>
+
+<table>
+    <tr *ngFor="let c of characters" (click)="onSelectHero(c.id)"> {{ c.name }}</tr>
+</table>
+
+<button type="button" (click)="onPrevious()" [disabled]="isPreviousDisabled">previous</button>
+<button type="button" (click)="onNext()" [disabled]="isNextDisabled">next</button>

@@ -2,7 +2,6 @@ package iss.nus.server39.controllers;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,7 +21,6 @@ import jakarta.json.Json;
 import jakarta.json.JsonArrayBuilder;
 import iss.nus.server39.models.Character;
 import iss.nus.server39.models.Comment;
-import iss.nus.server39.repositories.MongoRepository;
 
 
 @RestController
@@ -59,7 +57,7 @@ public class MarvelController {
     public ResponseEntity<String> getDetails(@PathVariable String id) {
         
         String detail = marvelService.getDetails(id);
-        List<Comment> comments = commentService.getLatestComments();
+        List<Comment> comments = commentService.getLatestComments(id);
         
         JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
         comments.forEach(x -> arrBuilder.add(Utils.toJson(x)));
@@ -86,14 +84,14 @@ public class MarvelController {
     }
 
 
-    @Autowired
-    MongoRepository mongoRepo;
+    // @Autowired
+    // MongoRepository mongoRepo;
 
-    @GetMapping("/test")
-    public ResponseEntity<String> test() {
+    // @GetMapping("/test")
+    // public ResponseEntity<String> test() {
 
-        mongoRepo.getComments();
-        return null;
-    }
+    //     mongoRepo.getComments();
+    //     return null;
+    // }
 
 }

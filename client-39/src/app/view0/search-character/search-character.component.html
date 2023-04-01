@@ -1,0 +1,8 @@
+<h1> This is search </h1>
+
+<!-- {{ characterForm.value | json }} -->
+
+<form [formGroup]="characterForm" (ngSubmit)="processForm()">
+    <input type="text" placeholder="Hero Name" formControlName="name">
+    <button type="submit" [disabled]="characterForm.invalid">Search</button>
+</form>

@@ -1,0 +1,12 @@
+<p>form-comments works!</p>
+
+<h2> Comment - {{ name }}</h2>
+<form [formGroup]="commentForm"(ngSubmit)="processForm()">
+    <tr>
+        <textarea cols="30" rows="10" formControlName="comment"></textarea>
+    </tr>
+    <tr>
+        <button type="reset">Cancel</button>
+        <button type="submit">Post</button>
+    </tr>
+</form>
